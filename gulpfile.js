@@ -11,6 +11,8 @@ var elixir = require('laravel-elixir');
  |
  */
 
+ elixir.config.sourcemaps = false;
+
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass('app.scss', null, {includePaths: ["resources/assets/foundation/bower_components/foundation-sites/scss"]});
 });
