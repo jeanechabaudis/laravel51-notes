@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.welcome');
+});
+
+Route::get('/acceder', function () {
+    return view('acceso.acceder');
+});
+Route::post('/acceder', 'Auth\AuthController@postLogin');
+
+Route::get('/registrar', function () {
+    return view('acceso.register');
 });

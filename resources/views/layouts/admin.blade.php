@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Laravel 5.1 - Notes</title>
+    <link href="https://file.myfontastic.com/aNZmoLNnWt25SimF8B4FbV/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
       .menuMain{
@@ -13,7 +14,7 @@
         bottom: 0;
         position: fixed;
         overflow: hidden;
-        background: #cacaca;
+        background: #e6e6e6;
         padding-top: 54px;
       }
       .menuMain-cont{
@@ -37,8 +38,8 @@
       <li>
         <a href="#">Jean Echabaudis</a>
         <ul class="menu vertical">
-          <li><a href="#">Agregar Nota</a></li>
-          <li><a href="#">Salir</a></li>
+          <li><a href="#"><i class="icon-cog"></i> Perfil</a></li>
+          <li><a href="#"><i class="icon-logout"></i> Salir</a></li>
         </ul>
       </li>
     </ul>
@@ -48,6 +49,7 @@
 <div class="menuMain Primary">
   <div class="menuMain-cont">
     <ul class="vertical menu" data-accordion-menu data-multi-open="false">
+      <li><a href="#"><i class="icon-clipboard"></i> Notas</a></li>
       <li>
         <a href="#">Item 1</a>
         <ul class="menu vertical nested">
@@ -68,17 +70,7 @@
 
 
 <section class="main" style="padding: 84px 15px 10px 255px;min-height: 100vh">
-
-    <div class="row align-justify">
-      <div class="column small-4" style="background: pink">Aligned to</div>
-      <div class="column small-4" style="background: pink">the edges</div>
-    </div>
-
-    <div style="display: flex;justify-content: space-between;">
-      <button class="button">Aceptar</button>
-      <button class="button alert">Salir</button>
-    </div>
-
+  @yield('main')
 </section>
 
 
