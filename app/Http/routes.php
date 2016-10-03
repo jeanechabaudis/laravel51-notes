@@ -11,15 +11,33 @@
 |
 */
 
+
 Route::get('/', function () {
-    return view('admin.welcome');
+	return view('welcome');
 });
-
-Route::get('/acceder', function () {
+//Acceder
+Route::get('/acceder', ['middleware' => 'guest', function () {
     return view('acceso.acceder');
-});
+}]);
 Route::post('/acceder', 'Auth\AuthController@postLogin');
-
+//Cerrar sesion
+Route::get('/logout', 'Auth\AuthController@getLogout');
+//Registrar
 Route::get('/registrar', function () {
     return view('acceso.register');
+});
+Route::post('/registrar', 'Auth\AuthController@postRegister');
+
+//Aplicación
+Route::group(['prefix' => 'app','middleware' => 'auth'], function () {
+    Route::get('/', function ()    {
+        return view('admin.index');
+    });
+    //Notes
+    Route::get('/notes', 'NoteController@index');
+    Route::get('/notes/create', 'NoteController@create');
+    Route::post('/notes/create', 'NoteController@store');
+    Route::get('/notes/edit/{id}', 'NoteController@edit');
+    Route::post('/notes/edit/{id}', 'NoteController@update');
+    Route::get('/notes/destroy/{id}', 'NoteController@destroy');
 });

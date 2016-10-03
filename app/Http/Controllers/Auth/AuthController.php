@@ -10,6 +10,16 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+    //Cuando se autentica correctamente direccionamos:
+    protected $redirectPath = '/app';
+    /*
+    /Cuando se autentica con errores redireccionamos a esta ruta
+    /tiene que rellenar los campos email y password
+    */
+    protected $loginPath = '/acceder';
+    //Despues de cerrar sesion direccionamos:
+    protected $redirectAfterLogout = '/acceder';
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller

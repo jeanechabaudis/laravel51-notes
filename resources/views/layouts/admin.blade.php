@@ -36,10 +36,10 @@
   <div class="top-bar-right">
     <ul class="dropdown  menu align-right" data-dropdown-menu data-disable-hover="true" data-click-open="true">
       <li>
-        <a href="#">Jean Echabaudis</a>
+        <a href="#">{!!Auth::user()->email!!}</a>
         <ul class="menu vertical">
           <li><a href="#"><i class="icon-cog"></i> Perfil</a></li>
-          <li><a href="#"><i class="icon-logout"></i> Salir</a></li>
+          <li><a href="/logout"><i class="icon-logout"></i> Salir</a></li>
         </ul>
       </li>
     </ul>
@@ -49,7 +49,7 @@
 <div class="menuMain Primary">
   <div class="menuMain-cont">
     <ul class="vertical menu" data-accordion-menu data-multi-open="false">
-      <li><a href="#"><i class="icon-clipboard"></i> Notas</a></li>
+      <li><a href="/app/notes"><i class="icon-clipboard"></i> Notas</a></li>
       <li>
         <a href="#">Item 1</a>
         <ul class="menu vertical nested">
