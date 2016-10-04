@@ -38,4 +38,9 @@
             @endforeach
     	</tbody>
     </table>
+
+    {!! $notes->render() !!}
+
+    {!! $notes->total() !!}
+
 @endsection

@@ -20,7 +20,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::where('user_id', auth()->user()->id)->get();
+        $notes = Note::where(['user_id'=>auth()->user()->id])->paginate(1);
         return view('notes.index',compact('notes'));
     }
 
@@ -43,7 +43,11 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         $title = $request->input('title');
-        Note::create(['user_id'=>auth()->user()->id,'title'=>$title,'description'=>$request->input('description')]);
+        Note::create([
+            'user_id'=>auth()->user()->id,
+            'title'=>$title,
+            'description'=>$request->input('description')
+            ]);
         Session::flash('message-success','Nota creada correctamente: '.$title);
         return Redirect::to('/app/notes/');
     }
@@ -70,11 +74,10 @@ class NoteController extends Controller
         $note = Note::where(['id'=>$id,'user_id'=>auth()->user()->id])->first();
         if(count($note)==0)
         {
-            return Redirect::to('/app/notes/');
+            abort(404);
         }
         return view('notes.edit',compact('note'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -84,10 +87,13 @@ class NoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $note = Note::where(['id'=>$id,'user_id'=>auth()->user()->id])->first();
-        $note->title = $request->title;
-        $note->description = $request->description;
-        $note->save();
+        $note = Note::where([
+            'id'=>$id, 
+            'user_id'=>auth()->user()->id
+            ])->update([
+            'title'=>$request->title,
+            'description'=>$request->description
+            ]);
         Session::flash('message-success','Nota se actualizo correctamente: '.$request->title);
         return Redirect::to('/app/notes/');
     }
@@ -100,10 +106,10 @@ class NoteController extends Controller
      */
     public function destroy($id)
     {
-        Note::destroy($id);
-        //$note = Note::find($id);
-        //$note = Note::where(['id'=>$id,'user_id'=>auth()->user()->id])->first();
-        //$note->delete();
+        Note::where([
+            'id'=>$id,
+            'user_id'=>auth()->user()->id
+            ])->delete();
         Session::flash('message-success','Nota se elimino correctamente');
         return Redirect::to('/app/notes/');
     }

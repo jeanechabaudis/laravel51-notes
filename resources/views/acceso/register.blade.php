@@ -13,6 +13,7 @@
 	    	<input class="button primary expanded" type="submit" value="Registrar">
 	    	<p class="text-center">by <a href="#">jechabaudis</a></p>
 	    	<p class="text-center">Laravel 5.1 - Notes © 2016</p>
+	    	<p class="text-center">¿Ya tienes cuenta? <a href="/acceder">Inicia sesion</a></p>
 	    </form>		
 	</div>
 @endsection
