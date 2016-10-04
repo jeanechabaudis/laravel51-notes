@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Note;
 use Session;
 use Redirect;
+use App\Http\Requests\NoteStoreRequest;
 
 class NoteController extends Controller
 {
@@ -20,7 +21,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::where(['user_id'=>auth()->user()->id])->paginate(1);
+        $notes = Note::where(['user_id'=>auth()->user()->id])->paginate(3);
         return view('notes.index',compact('notes'));
     }
 
@@ -40,7 +41,7 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NoteStoreRequest $request)
     {
         $title = $request->input('title');
         Note::create([
@@ -48,7 +49,7 @@ class NoteController extends Controller
             'title'=>$title,
             'description'=>$request->input('description')
             ]);
-        Session::flash('message-success','Nota creada correctamente: '.$title);
+        Session::flash('message-success','Nota creada correctamente');
         return Redirect::to('/app/notes/');
     }
 
@@ -85,8 +86,9 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NoteStoreRequest $request, $id)
     {
+        /*
         $note = Note::where([
             'id'=>$id, 
             'user_id'=>auth()->user()->id
@@ -94,7 +96,17 @@ class NoteController extends Controller
             'title'=>$request->title,
             'description'=>$request->description
             ]);
-        Session::flash('message-success','Nota se actualizo correctamente: '.$request->title);
+            */
+
+        $note = new Note;
+        $note->fill(array('user_id'=>auth()->user()->id, 'title'=>$request->title, 'description'=>$request->description));
+        $note->where([
+            'id'=>$id, 
+            'user_id'=>auth()->user()->id
+            ]);
+        $note->update();
+
+        Session::flash('message-success','Nota se actualizo correctamente');
         return Redirect::to('/app/notes/');
     }
 

@@ -52,3 +52,17 @@
 @include motion-ui-transitions;
 @include motion-ui-animations;
 */
+
+//Style
+ul.pagination{
+	@include pagination-container;
+	li.active{
+		@include pagination-item-current;
+	}
+	li.disabled{
+		@include pagination-item-disabled;
+	}
+	li.disabled{
+		@include pagination-ellipsis;
+	}
+}

@@ -3547,3 +3547,49 @@ table.hover tr:nth-of-type(even):hover {
 @include motion-ui-transitions;
 @include motion-ui-animations;
 */
+ul.pagination {
+  margin-left: 0;
+  margin-bottom: 1rem; }
+  ul.pagination::before, ul.pagination::after {
+    content: ' ';
+    display: table;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-order: 1;
+    order: 1; }
+  ul.pagination::after {
+    clear: both; }
+  ul.pagination li {
+    font-size: 0.875rem;
+    margin-right: 0.0625rem;
+    border-radius: 0;
+    display: none; }
+    ul.pagination li:last-child, ul.pagination li:first-child {
+      display: inline-block; }
+    @media screen and (min-width: 40em) {
+      ul.pagination li {
+        display: inline-block; } }
+  ul.pagination a,
+  ul.pagination button {
+    color: #0a0a0a;
+    display: block;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 0; }
+    ul.pagination a:hover,
+    ul.pagination button:hover {
+      background: #e6e6e6; }
+  ul.pagination li.active {
+    padding: 0.1875rem 0.625rem;
+    background: #2199e8;
+    color: #fefefe;
+    cursor: default; }
+  ul.pagination li.disabled {
+    padding: 0.1875rem 0.625rem;
+    color: #cacaca;
+    cursor: not-allowed; }
+    ul.pagination li.disabled:hover {
+      background: transparent; }
+  ul.pagination li.disabled {
+    content: '\2026';
+    padding: 0.1875rem 0.625rem;
+    color: #0a0a0a; }

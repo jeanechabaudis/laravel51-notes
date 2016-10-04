@@ -2,6 +2,7 @@
 
 @section('main')
     <h4>Nueva Nota</h4>
+    @include('alerts.errors')
     <form action="/app/notes/edit/{{ $note->id }}" method="POST">
         {!! csrf_field() !!}
         <div class="row">

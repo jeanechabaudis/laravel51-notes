@@ -10,4 +10,10 @@ class Note extends Model
 
     protected $fillable = ['user_id','title', 'description'];
 
+    //Mutators
+    public function setTitleAttribute($val)
+    {
+    	$this->attributes['title'] = mb_strtoupper(trim($val)."-model", 'UTF-8');
+    }
+
 }

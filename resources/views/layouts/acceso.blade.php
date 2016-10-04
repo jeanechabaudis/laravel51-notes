@@ -14,23 +14,9 @@
 </head>
 <body>
 
-
-
-<section class="main">
-  
-    @if (count($errors) > 0)
-      <div class="callout alert" style="border: none;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-        </div>
-    @endif
-  
-  @yield('main')
+<section class="main">      
+    @yield('main')
 </section>
-
 
 <script src="{{ asset('js/app.js') }}"></script>
 </body>

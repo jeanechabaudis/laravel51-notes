@@ -2,7 +2,7 @@
 
 @section('main')
     @if(Session::has('message-success'))
-        <div class="callout success" data-closable>
+        <div class="callout small success" data-closable>
             {{Session::get('message-success')}}
             <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
                 <span aria-hidden="true">&times;</span>
@@ -11,7 +11,7 @@
     @endif
 
     <h4>Notas</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, molestiae quam ratione, ea nisi at dolore laborum voluptatibus facilis voluptate aspernatur blanditiis eveniet quod, cumque ullam, earum expedita excepturi sint?</p>
+    <p>Administra cada una de tus notas incluyendo su titulo y descripción.</p>
     <div class="row align-right">
     	<a class="button primary" href="/app/notes/create"><i class="icon-file-add"></i></a>
     </div>
@@ -39,8 +39,6 @@
     	</tbody>
     </table>
 
-    {!! $notes->render() !!}
-
-    {!! $notes->total() !!}
+    {!! $notes->appends(['sort' => 'votes'])->render() !!}
 
 @endsection
