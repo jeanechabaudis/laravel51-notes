@@ -13,7 +13,21 @@ class Note extends Model
     //Mutators
     public function setTitleAttribute($val)
     {
-    	$this->attributes['title'] = mb_strtoupper(trim($val)."-model", 'UTF-8');
+    	$this->attributes['title'] = mb_strtoupper(trim($val), 'UTF-8');
     }
+
+    public function setDescriptionAttribute($val)
+    {
+    	$this->attributes['description'] = trim($val);
+    }
+
+    //Accesors
+    /*
+    /Example
+    public function getTitleAttribute($val)
+    {
+        return $val."-Accesors";
+    }
+    */
 
 }

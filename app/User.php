@@ -36,4 +36,12 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+    * Mutators
+    */
+    public function setNameAttribute($val)
+    {
+        $this->attributes['name'] = mb_strtoupper($val,"UTF-8");
+    }
 }

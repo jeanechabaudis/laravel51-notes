@@ -33,6 +33,9 @@ Route::group(['prefix' => 'app','middleware' => 'auth'], function () {
     Route::get('/', function ()    {
         return view('admin.index');
     });
+    //Profile
+    Route::get('/profile', 'UserController@index');
+    Route::post('/profile/edit/{id}', 'UserController@update');
     //Notes
     Route::get('/notes', 'NoteController@index');
     Route::get('/notes/create', 'NoteController@create');
