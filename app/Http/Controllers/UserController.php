@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Session;
 use Redirect;
+use App\Http\Requests\PasswordRequest;
 
 class UserController extends Controller
 {
@@ -102,6 +103,26 @@ class UserController extends Controller
         Session::flash('message-success','Datos guradados correctamente');
         return Redirect::to('/app/profile/');
         
+    }
+
+    public function changePassword(PasswordRequest $request)
+    {
+        if( !\Hash::check($request->password,auth()->user()->password) )
+        {
+            Session::flash('message-error','La contraseña actual es incorrecta');
+            return Redirect::to('/app/profile/');
+        }
+        else if( !\Hash::check($request->password_new, bcrypt($request->password_confirmation)) )
+        {
+            Session::flash('message-error','Las contraseñas no coinciden');
+            return Redirect::to('/app/profile/');
+        }
+
+        $user = User::find(auth()->user()->id);
+        $user->password = bcrypt($request->password_confirmation);
+        $user->save();
+        Session::flash('message-success','Contraseña se actualizo correctamente');
+        return Redirect::to('/app/profile/');
     }
 
     /**

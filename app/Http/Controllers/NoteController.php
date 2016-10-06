@@ -100,6 +100,7 @@ class NoteController extends Controller
             'description'=>$note->description
             ]);
 
+
         Session::flash('message-success','Nota se actualizo correctamente');
         return Redirect::to('/app/notes/');
     }

@@ -27,6 +27,16 @@ Route::get('/registrar', function () {
     return view('acceso.register');
 });
 Route::post('/registrar', 'Auth\AuthController@postRegister');
+// Password reset link request routes...
+Route::get('password/email', function(){
+    return view('acceso.password');
+});
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+// Password reset routes...
+Route::get('password/reset/{token}/{email}', function($token,$email){
+    return view('acceso.reset',['token'=>$token,'email'=>$email]);
+});
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 //Aplicación
 Route::group(['prefix' => 'app','middleware' => 'auth'], function () {
@@ -36,6 +46,7 @@ Route::group(['prefix' => 'app','middleware' => 'auth'], function () {
     //Profile
     Route::get('/profile', 'UserController@index');
     Route::post('/profile/edit/{id}', 'UserController@update');
+    Route::post('/profile/password', 'UserController@changePassword');
     //Notes
     Route::get('/notes', 'NoteController@index');
     Route::get('/notes/create', 'NoteController@create');

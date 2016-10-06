@@ -3,6 +3,7 @@
 @section('main')	
 	 @include('messages.success')
 	 @include('messages.error')
+	 @include('alerts.errors')
 
 	<h3>Perfil</h3>
 	<p>Administra tus datos</p>
@@ -32,14 +33,14 @@
 		</div>
 	</form>
 
-	<form action="/app/profile/edit/{{ $user->id }}" method="post">
+	<form action="/app/profile/password" method="post">
 		{!! csrf_field() !!}
 		<div class="row align-center">
 			<div class="column small-6">
 				<h4>Informacion de seguridad</h4>
 				<label>
 					Contraseña Actual
-					<input type="password" name="name">
+					<input type="password" name="password">
 				</label>
 			</div>
 		</div>
@@ -47,7 +48,7 @@
 			<div class="column small-6">
 				<label>
 					Nueva Contraseña
-					<input type="password" name="name">
+					<input type="password" name="password_new">
 				</label>
 			</div>
 		</div>
@@ -55,7 +56,7 @@
 			<div class="column small-6">
 				<label>
 					Confirmar Contraseña
-					<input type="password" name="name">
+					<input type="password" name="password_confirmation">
 				</label>
 			</div>
 		</div>

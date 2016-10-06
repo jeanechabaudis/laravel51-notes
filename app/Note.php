@@ -16,11 +16,6 @@ class Note extends Model
     	$this->attributes['title'] = mb_strtoupper(trim($val), 'UTF-8');
     }
 
-    public function setDescriptionAttribute($val)
-    {
-    	$this->attributes['description'] = trim($val);
-    }
-
     //Accesors
     /*
     /Example
