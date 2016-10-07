@@ -48,22 +48,14 @@
     <div class="menuMain-cont">
       <ul class="vertical menu" data-accordion-menu data-multi-open="false">
         <li><a href="/app/"><i class="icon-tachometer"></i> Panel de control</a></li>
-        <li><a href="/app/notes"><i class="icon-clipboard"></i> Notas</a></li>
+        <li>
+          <a href="#"><i class="icon-clipboard"></i> Notas</a>
+          <ul class="menu vertical nested">
+            <li><a href="/app/notes">Listar</a></li>
+            <li><a href="/app/notes/create">Crear</a></li>
+          </ul>
+        </li>
         <li><a href="/app/profile"><i class="icon-user"></i> Perfil</a></li>
-        <li>
-          <a href="#">Item 1</a>
-          <ul class="menu vertical nested">
-            <li><a href="#">Item 1A</a></li>
-            <li><a href="#">Item 1B</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Item 2</a>
-          <ul class="menu vertical nested">
-            <li><a href="#">Item 1A</a></li>
-            <li><a href="#">Item 1B</a></li>
-          </ul>
-        </li>
       </ul>
     </div>
   </div>

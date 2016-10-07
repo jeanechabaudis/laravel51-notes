@@ -43,11 +43,10 @@ class NoteController extends Controller
      */
     public function store(NoteStoreRequest $request)
     {
-        Note::create([
-            'user_id'=>auth()->user()->id,
-            'title'=>$request->input('title'),
-            'description'=>$request->input('description')
-            ]);
+        $note = new Note;
+        $note->user_id = auth()->user()->id;
+        $note->fill($request->all());
+        $note->save();
         Session::flash('message-success','Nota creada correctamente');
         return Redirect::to('/app/notes/');
     }
@@ -71,7 +70,7 @@ class NoteController extends Controller
      */
     public function edit($id)
     {
-        $note = Note::where(['id'=>$id,'user_id'=>auth()->user()->id])->first();
+        $note = Note::where(['id'=>$id,'user_id'=>auth()->user()->id])->select('id','title','description')->first();
         if(count($note)==0)
         {
             abort(404);
@@ -87,22 +86,16 @@ class NoteController extends Controller
      */
     public function update(NoteStoreRequest $request, $id)
     {
-        //Primero instanciamos del modelo note para que pueda reconocer los mutators de los campos
         $note = new Note;
-        $note->title = $request->title;
-        $note->description = $request->description;
-        //Ahora si actualizamos pero con los campos de la instancia anterior($note)
-        $note = Note::where([
+        $note->fill($request->all());
+        $note->where([
             'id'=>$id, 
             'user_id'=>auth()->user()->id
-            ])->update([
-            'title'=>$note->title,
-            'description'=>$note->description
-            ]);
-
+            ])->update($note->getAttributes());
 
         Session::flash('message-success','Nota se actualizo correctamente');
         return Redirect::to('/app/notes/');
+        
     }
 
     /**

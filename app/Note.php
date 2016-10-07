@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     protected $table = 'notes';
-
-    protected $fillable = ['user_id','title', 'description'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['title', 'description'];
 
     //Mutators
     public function setTitleAttribute($val)
@@ -17,12 +17,12 @@ class Note extends Model
     }
 
     //Accesors
-    /*
-    /Example
+    
+    //Example
     public function getTitleAttribute($val)
     {
         return $val."-Accesors";
     }
-    */
+    
 
 }
