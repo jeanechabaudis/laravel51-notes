@@ -17,12 +17,10 @@ class Note extends Model
     }
 
     //Accesors
-    
-    //Example
+    /*
     public function getTitleAttribute($val)
     {
         return $val."-Accesors";
     }
-    
-
+    */
 }

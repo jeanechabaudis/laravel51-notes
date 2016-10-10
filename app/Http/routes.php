@@ -31,10 +31,13 @@ Route::post('/registrar', 'Auth\AuthController@postRegister');
 Route::get('password/email', function(){
     return view('acceso.password');
 });
+Route::get('email', function(){
+    return view('emails.template');
+});
 Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
-Route::get('password/reset/{token}/{email}', function($token,$email){
-    return view('acceso.reset',['token'=>$token,'email'=>$email]);
+Route::get('password/reset/{token}', function($token){
+    return view('acceso.reset',['token'=>$token]);
 });
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 

@@ -13,7 +13,7 @@
 	    	<input type="password" name="password" placeholder="Ingrese contraseña">
 	    	<div class="row">
 	    		<div class="column text-right">
-	    			<p><a href="#">¿ Olvidaste tu contraseña ?</a></p>
+	    			<p><a href="password/email">¿ Olvidaste tu contraseña ?</a></p>
 	    		</div>
 	    	</div>
 	    	<input class="button primary expanded" type="submit" value="Acceder">
